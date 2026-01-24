@@ -1,0 +1,331 @@
+/* --- CONTAINER --- */
+.profile-container {
+  background-color: transparent; /* Blends with your main App background */
+  min-height: 100vh;
+  color: #e0e0e0;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- HERO SECTION (Sleeper Layout) --- */
+.profile-hero {
+  background: #151515; /* Your dashboard card color */
+  
+  /* BOX STYLING UPDATES */
+  border: 1px solid #333; /* Full border */
+  border-bottom: none; /* Open bottom to connect with tabs */
+  border-radius: 12px 12px 0 0; /* Rounded top corners */
+  
+  padding: 40px 60px;
+  position: relative;
+  margin-top: 20px; /* Slight spacing from top of page */
+}
+
+.hero-back-btn {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background: transparent;
+  border: 1px solid #333;
+  color: #888;
+  padding: 5px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+}
+.hero-back-btn:hover { border-color: #E03A3E; color: #fff; }
+
+.hero-content {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Avatar Circle */
+.hero-avatar-wrapper {
+  position: relative;
+}
+
+.hero-avatar {
+  width: 100px;
+  height: 100px;
+  background-color: #2a2a2a;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40px;
+  font-weight: 700;
+  color: #666;
+  border: 4px solid #1a1a1a;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+}
+
+.school-logo-badge {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 30px;
+  height: 30px;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  border: 3px solid #151515;
+}
+
+/* Hero Text */
+.hero-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.hero-name {
+  font-size: 2.8rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  line-height: 1;
+}
+
+/* Vitals Row (The Sleeper Signature) */
+.hero-vitals-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+  color: #aaa;
+  font-weight: 500;
+}
+
+.vital-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #666;
+  margin-right: 4px;
+  letter-spacing: 0.5px;
+}
+
+.vital-divider { color: #333; font-size: 0.8rem; }
+.school-highlight { color: #fff; font-weight: 700; }
+
+.hero-badges-row {
+  display: flex;
+  gap: 10px;
+  margin-top: 8px;
+}
+
+.pos-badge {
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 8px;
+  border-radius: 4px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+}
+
+.rank-badge {
+  background: #333;
+  color: #ccc;
+  font-size: 0.75rem;
+  padding: 4px 8px;
+  border-radius: 4px;
+}
+
+/* --- TABS BAR --- */
+.profile-tabs {
+  background: #1a1a1a;
+  
+  /* BOX STYLING UPDATES */
+  border-left: 1px solid #333;
+  border-right: 1px solid #333;
+  border-bottom: 1px solid #333;
+  border-radius: 0 0 12px 12px; /* Rounded bottom corners */
+
+  padding: 0 60px;
+  display: flex;
+  gap: 30px;
+  margin-bottom: 30px; /* Space between header unit and content */
+}
+
+.tab-item {
+  background: none;
+  border: none;
+  color: #888;
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 18px 0;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.tab-item:hover { color: #ccc; }
+
+.tab-item.active {
+  color: #fff;
+  border-bottom-color: #E03A3E; /* YOUR BRAND COLOR */
+}
+
+/* --- BODY --- */
+.profile-body {
+  padding: 0 60px 40px 60px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.data-card {
+  background: #151515; /* Card bg */
+  border-radius: 8px;
+  border: 1px solid #333;
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 15px 20px;
+  border-bottom: 1px solid #333;
+  background: #1a1a1a;
+}
+.card-header h3 { margin: 0; font-size: 1rem; color: #fff; }
+
+/* Table Styling */
+.profile-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.profile-table th {
+  padding: 12px 20px;
+  color: #666;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  border-bottom: 1px solid #333;
+  background: #181818;
+}
+
+.profile-table td {
+  padding: 15px 20px;
+  border-bottom: 1px solid #252525;
+  color: #ccc;
+  text-align: center;
+}
+.profile-table td[align="left"] { text-align: left; }
+
+/* Highlight Stats */
+.stat-pop {
+  color: #fff;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.school-text { color: #aaa; }
+
+.dim-row td { color: #444; }
+
+.footnote {
+  padding: 15px;
+  font-size: 0.8rem;
+  color: #555;
+  font-style: italic;
+  text-align: center;
+  background: #121212;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px;
+  color: #666;
+  border: 2px dashed #333;
+  border-radius: 8px;
+}
+
+/* Add to src/components/PlayerProfile.css */
+
+.analyze-btn {
+  background-color: #E03A3E; /* Dynasty Red */
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  font-weight: 700;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: background 0.2s;
+}
+
+.analyze-btn:hover {
+  background-color: #c0282c;
+}
+
+.loading-zone {
+  padding: 40px;
+  text-align: center;
+  color: #00C853; /* Matrix Green for loading */
+  font-family: monospace;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 0.5; }
+  50% { opacity: 1; }
+  100% { opacity: 0.5; }
+}
+
+.empty-state-small {
+  padding: 40px;
+  text-align: center;
+  color: #666;
+  font-style: italic;
+}
+
+/* CONTEXT TAGS */
+.ctx-tag {
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.ctx-tag.shootout {
+  background-color: rgba(0, 200, 83, 0.2); /* Green Tint */
+  color: #00C853;
+  border: 1px solid #00C853;
+}
+
+.ctx-tag.defensive {
+  background-color: rgba(41, 98, 255, 0.2); /* Blue Tint */
+  color: #2962FF;
+  border: 1px solid #2962FF;
+}
+
+.ctx-tag.blowout-win {
+  background-color: rgba(255, 215, 0, 0.2); /* Gold */
+  color: #FFD700;
+  border: 1px solid #FFD700;
+}
+
+.ctx-tag.blowout-loss {
+  background-color: rgba(255, 68, 68, 0.2); /* Red */
+  color: #ff4444;
+  border: 1px solid #ff4444;
+}
+
+.ctx-tag.standard {
+  background-color: #333;
+  color: #888;
+}

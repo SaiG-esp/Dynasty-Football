@@ -1,0 +1,35 @@
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1a1a1c;
+    border-radius: 20px;
+    border: 1px solid #333;
+    padding: 0 30px;
+    height: 80px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    flex-shrink: 0;
+  }
+  
+  .header-logo {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .header-logo span { color: #FFA55B; }
+  
+  .nav-links { display: flex; gap: 30px; }
+  .nav-item {
+    color: #888;
+    font-weight: 700;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s;
+    cursor: pointer;
+  }
+  .nav-item:hover, .nav-item.active { color: #fff; }

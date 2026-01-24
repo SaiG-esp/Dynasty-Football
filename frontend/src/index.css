@@ -1,0 +1,251 @@
+/* --- GLOBAL THEME --- */
+body {
+  background-color: #18181A;
+  color: #FFFFFF;
+  font-family: 'Inter', system-ui, sans-serif;
+  margin: 0;
+  padding: 20px; /* The header will float inside this padding */
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+/* --- MAIN LAYOUT CONTAINER --- */
+.dashboard-container {
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100vh - 40px);
+  gap: 24px;
+}
+
+/* --- NEW: FLOATING HEADER BAR --- */
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #1a1a1c;
+  border-radius: 20px;
+  border: 1px solid #333;
+  padding: 0 30px;
+  height: 80px;
+  margin-bottom: 24px; /* Space between header and content */
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.header-logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.header-logo span { color: #FFA55B; } /* Orange Accent */
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-item {
+  color: #888;
+  font-weight: 700;
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: color 0.2s;
+  cursor: pointer;
+}
+.nav-item:hover, .nav-item.active {
+  color: #fff;
+}
+
+/* --- TOP ROW: WELCOME (Legacy, if used) --- */
+.welcome-card {
+  background: linear-gradient(135deg, #252529 0%, #18181A 100%);
+  border-radius: 24px;
+  padding: 0 40px;
+  border: 1px solid #2A2A2E;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 160px;
+  flex-shrink: 0;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.welcome-text h1 {
+  font-size: 3rem;
+  margin: 0;
+  line-height: 1.1;
+  background: linear-gradient(to right, #fff, #aaa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.welcome-text p { color: #888; margin-top: 8px; font-size: 1.1rem; }
+
+.primary-btn {
+  background-color: #FFA55B;
+  color: #18181A;
+  border: none;
+  padding: 16px 32px;
+  border-radius: 50px;
+  font-weight: 800;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: transform 0.2s;
+  text-decoration: none;
+}
+.primary-btn:hover { transform: scale(1.05); }
+
+/* --- DEFENSIVE RANKINGS PAGE (SPLIT LAYOUT) --- */
+
+/* 1. The Main Wrapper */
+.rankings-container {
+  display: flex;
+  gap: 24px;
+  padding-bottom: 50px;
+  align-items: flex-start;
+}
+
+/* 2. The Left Side (Conferences) - Takes all remaining space */
+.conference-grid {
+  flex-grow: 1;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  min-width: 0; /* Prevents grid blowout */
+}
+
+/* 3. The Right Side (Sidebar) - Locked Width */
+.sidebar {
+  width: 260px; 
+  flex-shrink: 0;
+  position: sticky;
+  top: 20px;
+}
+
+/* 4. Sidebar Card Styling */
+.sidebar-card {
+  background-color: #1a1a1c;
+  border-radius: 20px;
+  border: 1px solid #333;
+  padding: 20px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  max-height: 85vh; 
+  overflow-y: auto;
+}
+
+/* --- REUSED ELEMENTS --- */
+
+/* Shared Header Style */
+.conference-header {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  border-bottom: 2px solid #333;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Conference Card Specifics */
+.conference-card {
+  background-color: #1a1a1c;
+  border-radius: 20px;
+  border: 1px solid #333;
+  padding: 0 30px 30px 30px; 
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+  max-height: 550px; 
+  overflow-y: auto;
+  width: 100%; 
+  box-sizing: border-box;
+}
+
+/* Sticky Header Logic (Only for Conference Cards) */
+.conference-card .conference-header {
+  position: sticky;
+  top: 0;
+  background-color: #1a1a1c; 
+  z-index: 10;
+  padding-top: 30px;
+}
+
+/* Scrollbar styling */
+.sidebar-card::-webkit-scrollbar,
+.conference-card::-webkit-scrollbar { width: 6px; }
+.sidebar-card::-webkit-scrollbar-track,
+.conference-card::-webkit-scrollbar-track { background: transparent; }
+.sidebar-card::-webkit-scrollbar-thumb,
+.conference-card::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+.sidebar-card::-webkit-scrollbar-thumb:hover,
+.conference-card::-webkit-scrollbar-thumb { background: #555; }
+
+/* Team Rows */
+.team-row {
+  display: flex;
+  align-items: stretch;
+  background-color: #252529;
+  border-radius: 12px;
+  overflow: hidden;
+  height: 60px;
+  margin-bottom: 12px;
+  border: 1px solid #2A2A2E;
+  transition: transform 0.2s;
+  flex-shrink: 0; 
+}
+.team-row:hover { transform: translateX(5px); border-color: #555; }
+
+.rank-box {
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: white;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+.team-info {
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+}
+
+.team-name-large {
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.stat-pill {
+  background: #18181A;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: bold;
+  border: 1px solid #333;
+  min-width: 90px;
+  text-align: center;
+}
+.havoc-score { color: #FFA55B; }
+
+/* Responsive adjustments */
+@media (max-width: 1400px) {
+  .rankings-container {
+    flex-direction: column; 
+  }
+  .sidebar { width: 100%; height: auto; max-height: 400px; }
+  .sidebar-card { max-height: 400px; }
+}

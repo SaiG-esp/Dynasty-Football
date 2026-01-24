@@ -1,0 +1,175 @@
+/* src/components/PlayersDashboard.css */
+
+/* Main Container */
+.players-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* 1. Header */
+.players-header-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.page-title {
+  font-size: 1.8rem;
+  margin: 0;
+  color: #fff;
+  font-weight: 800;
+}
+.player-search {
+  background: #202022;
+  border: 1px solid #333;
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: #fff;
+  width: 250px;
+  outline: none;
+}
+.player-search:focus { border-color: #5E918D; }
+
+/* 2. Filter Pills */
+.filter-row {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.filter-pill {
+  background: transparent;
+  border: 1px solid #333;
+  color: #888;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.filter-pill:hover {
+  background: #2A2A2E;
+  color: #fff;
+}
+
+.filter-pill.active {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.divider {
+  width: 1px;
+  height: 20px;
+  background: #333;
+  margin: 0 10px;
+}
+
+/* 3. The Table */
+.table-container {
+  background: #18181A;
+  border-radius: 12px;
+  overflow: hidden; /* For rounded corners */
+  border: 1px solid #2A2A2E;
+}
+
+.players-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+/* Header Row */
+.players-table thead th {
+  background: #202022;
+  color: #888;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 16px 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #333;
+}
+
+/* Body Rows */
+.players-table tbody tr {
+  border-bottom: 1px solid #252529;
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.players-table tbody tr:hover {
+  background-color: #2A2A2E;
+}
+
+.players-table tbody td {
+  padding: 12px 20px;
+  color: #fff;
+  font-size: 0.95rem;
+  vertical-align: middle;
+}
+
+/* Specific Columns */
+.td-rank {
+  color: #666;
+  font-weight: bold;
+  width: 50px;
+}
+
+.player-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.player-avatar-small {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: #333;
+  color: #888;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.player-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.p-name { font-weight: 700; color: #eee; }
+.p-pos { font-size: 0.75rem; color: #5E918D; font-weight: bold; }
+
+.team-pill {
+  font-size: 0.85rem;
+  color: #888;
+  font-weight: 600;
+}
+
+.td-stat {
+  font-variant-numeric: tabular-nums;
+  font-weight: 600;
+  color: #ccc;
+}
+.th-stat { text-align: right; }
+.td-stat { text-align: right; }
+
+.trend-tag {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+.up { color: #4ade80; }
+.down { color: #f87171; }
+.flat { color: #444; }
+
+/* Responsive */
+@media (max-width: 768px) {
+  .td-stat, .th-stat { display: none; }
+}

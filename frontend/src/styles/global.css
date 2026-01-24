@@ -1,0 +1,64 @@
+/* GLOBAL RESET & THEME */
+body {
+    background-color: #18181A;
+    color: #FFFFFF;
+    font-family: 'Inter', system-ui, sans-serif;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    box-sizing: border-box;
+    overflow-y: auto;
+  }
+  
+  /* MAIN APP WRAPPER */
+  .app-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  
+  /* SHARED: CARDS */
+  .dashboard-card {
+    background-color: #202022;
+    border-radius: 24px;
+    padding: 24px;
+    border: 1px solid #2A2A2E;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  }
+  
+  /* SHARED: TITLES */
+  .section-title {
+    font-size: 1.1rem;
+    margin-bottom: 15px;
+    color: #FFA55B;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+  }
+  
+  /* SHARED: BUTTONS */
+  .primary-btn {
+    background-color: #FFA55B;
+    color: #18181A;
+    border: none;
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 800;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s;
+  }
+  .primary-btn:hover { transform: scale(1.05); }
+  
+  /* SHARED: SCROLLBARS */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+  ::-webkit-scrollbar-thumb:hover { background: #555; }
