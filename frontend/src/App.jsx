@@ -7,9 +7,9 @@ import HomeDashboard from './components/HomeDashboard';
 import RankingsDashboard from './components/RankingsDashboard';
 import PlayerProfile from './components/PlayerProfile';
 import PlayersDashboard from './components/PlayersDashboard';
+import PlayoffBracket from './components/PlayoffBracket'; // <--- 1. NEW IMPORT
 
 // Data
-// Ensure PLAYER_DATABASE is imported. If it's missing, we default to empty array below.
 import { samplePlayers, PROSPECTS_2025, PLAYER_DATABASE } from './data';
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
   const handlePlayerClick = (id) => {
     console.log("🖱️ User clicked Player ID:", id, "(Type:", typeof id, ")");
 
-    // 1. SAFE SEARCH: Convert everything to Strings to prevent Type mismatch (123 vs "123")
+    // 1. SAFE SEARCH: Convert everything to Strings to prevent Type mismatch
     const searchId = String(id);
     
     // Check Big Database
@@ -59,6 +59,9 @@ function App() {
       <div className="main-content-area">
         {view === 'home' && <HomeDashboard setView={setView} />}
         {view === 'rankings' && <RankingsDashboard />}
+        
+        {/* <--- 2. NEW VIEW ADDITION ---> */}
+        {view === 'matchups' && <PlayoffBracket />}
         
         {view === 'players' && (
           <PlayersDashboard onPlayerClick={handlePlayerClick} />

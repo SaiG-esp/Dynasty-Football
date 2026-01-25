@@ -1,137 +1,133 @@
 /* src/components/RankingsDashboard.css */
 
-/* 1. LAYOUT WRAPPERS */
-.split-layout {
-    display: flex;
-    gap: 24px;
-    align-items: flex-start;
-  }
+/* 1. MAIN CONTAINER */
+.dashboard-container {
+  padding: 20px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* 2. THE GRID */
+.conference-grid {
+  display: grid;
+  /* Auto-fit columns: Will create as many 450px columns as fit on the screen */
+  grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+  gap: 24px;
+  width: 100%;
+}
+
+/* 3. CARD STYLING (Applies to Conferences AND AP Top 25 now) */
+.conference-card {
+  background-color: #1a1a1c;
+  border-radius: 20px;
+  border: 1px solid #333;
+  padding: 0 24px 24px 24px;
+  max-height: 550px;
+  overflow-y: hidden; /* Hide vertical scroll on the card itself, let the table scroll */
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+
+  /* CRITICAL: Prevents grid blowout */
+  min-width: 0; 
+  width: 100%;
+}
+
+.conference-header {
+  background-color: #1a1a1c;
+  padding: 20px 0 15px 0;
+  border-bottom: 2px solid #333;
+  margin-bottom: 15px;
+  font-size: 1.5rem; 
+  font-weight: 900; 
+  color: #fff;
+  display: flex; 
+  justify-content: space-between;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* 4. SCROLL WRAPPER (Handles the horizontal scroll for tables) */
+.table-container {
+  width: 100%;
+  overflow-x: auto; /* Enables horizontal scroll */
+  overflow-y: auto; /* Enables vertical scroll for long lists */
+  -webkit-overflow-scrolling: touch; 
+  padding-bottom: 5px;
+  flex-grow: 1; /* Fills the rest of the card height */
+}
+
+/* 5. TEAM ROWS */
+.team-row {
+  display: flex; 
+  align-items: stretch;
+  background-color: #252529;
+  border-radius: 12px; 
+  overflow: hidden;
+  height: 50px; 
+  margin-bottom: 10px;
+  border: 1px solid #2A2A2E; 
+  flex-shrink: 0;
+  transition: transform 0.2s;
   
+  /* Ensure row stays wide enough to read */
+  min-width: 500px; 
+}
+
+.team-row:hover {
+  transform: translateX(4px);
+  border-color: #555;
+}
+
+.rank-box {
+  width: 50px; 
+  display: flex; 
+  justify-content: center; 
+  align-items: center;
+  font-size: 1.2rem; 
+  font-weight: 900; 
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  flex-shrink: 0;
+}
+
+.team-info {
+  flex-grow: 1; 
+  display: flex; 
+  justify-content: space-between; 
+  align-items: center;
+  padding: 0 15px;
+  min-width: 0;
+}
+
+.team-name-large { 
+  font-weight: 700; 
+  color: #fff;
+  font-size: 1rem;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* 6. STAT PILLS */
+.stat-pill {
+  background: #18181A; 
+  padding: 4px 10px; 
+  border-radius: 6px;
+  font-size: 0.8rem; 
+  color: #888; 
+  font-weight: bold; 
+  border: 1px solid #333;
+  min-width: 80px;
+  text-align: center;
+}
+
+.havoc-score { 
+  color: #FFA55B; 
+}
+
+/* 7. MOBILE RESPONSIVE */
+@media (max-width: 600px) {
   .conference-grid {
-    flex-grow: 1;
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns for conferences */
-    gap: 24px;
+    grid-template-columns: 1fr; /* Force single column on phone */
   }
-  
-  /* 2. SIDEBAR (Fixed Width & Sticky) */
-  .sidebar {
-    width: 280px;
-    flex-shrink: 0;
-    position: sticky;
-    top: 20px;
-  }
-  
-  .sidebar-card {
-    background-color: #1a1a1c;
-    border-radius: 20px;
-    border: 1px solid #333;
-    padding: 20px;
-    max-height: 85vh;
-    overflow-y: auto;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-  }
-  
-  /* 3. CONFERENCE CARDS */
-  .conference-card {
-    background-color: #1a1a1c;
-    border-radius: 20px;
-    border: 1px solid #333;
-    padding: 0 24px 24px 24px;
-    max-height: 550px;
-    overflow-y: auto;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  }
-  
-  .conference-header {
-    position: sticky; 
-    top: 0; 
-    z-index: 10;
-    background-color: #1a1a1c;
-    padding: 20px 0 15px 0;
-    border-bottom: 2px solid #333;
-    margin-bottom: 15px;
-    font-size: 1.5rem; 
-    font-weight: 900; 
-    color: #fff;
-    display: flex; 
-    justify-content: space-between;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-  }
-  
-  /* 4. TEAM ROWS (The List Items) */
-  .team-row {
-    display: flex; 
-    align-items: stretch;
-    background-color: #252529;
-    border-radius: 12px; 
-    overflow: hidden;
-    height: 50px; 
-    margin-bottom: 10px;
-    border: 1px solid #2A2A2E; 
-    flex-shrink: 0;
-    transition: transform 0.2s;
-  }
-  
-  .team-row:hover {
-    transform: translateX(4px);
-    border-color: #555;
-  }
-  
-  .rank-box {
-    width: 50px; 
-    display: flex; 
-    justify-content: center; 
-    align-items: center;
-    font-size: 1.2rem; 
-    font-weight: 900; 
-    color: #fff;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.3);
-  }
-  
-  .team-info {
-    flex-grow: 1; 
-    display: flex; 
-    justify-content: space-between; 
-    align-items: center;
-    padding: 0 15px;
-  }
-  
-  .team-name-large { 
-    font-weight: 700; 
-    color: #fff;
-    font-size: 1rem;
-    text-transform: uppercase;
-  }
-  
-  /* 5. STAT PILLS */
-  .stat-pill {
-    background: #18181A; 
-    padding: 4px 10px; 
-    border-radius: 6px;
-    font-size: 0.8rem; 
-    color: #888; 
-    font-weight: bold; 
-    border: 1px solid #333;
-    min-width: 80px;
-    text-align: center;
-  }
-  
-  .havoc-score { 
-    color: #FFA55B; 
-  }
-  
-  /* 6. RESPONSIVE */
-  @media (max-width: 1200px) {
-    .split-layout { 
-      flex-direction: column; 
-    }
-    .sidebar { 
-      width: 100%; 
-      max-height: 400px; 
-    }
-    .conference-grid {
-      grid-template-columns: 1fr;
-    }
-  }
+}

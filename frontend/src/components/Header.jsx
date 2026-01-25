@@ -18,7 +18,15 @@ const Header = ({ setView, currentView }) => {
         >
           Defensive Rankings
         </a>
-        <a className="nav-item">Matchups</a>
+        
+        {/* --- WIRED UP THE MATCHUPS BUTTON --- */}
+        <a 
+          onClick={() => setView('matchups')} 
+          className={`nav-item ${currentView === 'matchups' ? 'active' : ''}`}
+        >
+          Matchups
+        </a>
+
         <a 
           onClick={() => setView('players')} 
           className={`nav-item ${currentView === 'players' ? 'active' : ''}`}
