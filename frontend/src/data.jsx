@@ -229,6 +229,36 @@ export const FIRST_ROUND_ORDER = [
   { pick: 18, team: "Minnesota Vikings", needs: "CB/DT" }
 ];
  
+// --- TOP 25 PPR FANTASY ROOKIE RANKINGS (2025 class, 1QB PPR consensus) ---
+// Order reflects fantasy value, not NFL draft slot. `team` is the NFL landing spot.
+export const FANTASY_ROOKIE_PPR_TOP25 = [
+  { rank: 1, name: "Ashton Jeanty", pos: "RB", team: "LV" },
+  { rank: 2, name: "Omarion Hampton", pos: "RB", team: "LAC" },
+  { rank: 3, name: "Travis Hunter", pos: "WR", team: "JAX" },
+  { rank: 4, name: "Tetairoa McMillan", pos: "WR", team: "CAR" },
+  { rank: 5, name: "TreVeyon Henderson", pos: "RB", team: "NE" },
+  { rank: 6, name: "Quinshon Judkins", pos: "RB", team: "CLE" },
+  { rank: 7, name: "Emeka Egbuka", pos: "WR", team: "TB" },
+  { rank: 8, name: "Tyler Warren", pos: "TE", team: "IND" },
+  { rank: 9, name: "Kaleb Johnson", pos: "RB", team: "PIT" },
+  { rank: 10, name: "Colston Loveland", pos: "TE", team: "CHI" },
+  { rank: 11, name: "RJ Harvey", pos: "RB", team: "DEN" },
+  { rank: 12, name: "Matthew Golden", pos: "WR", team: "GB" },
+  { rank: 13, name: "Luther Burden III", pos: "WR", team: "CHI" },
+  { rank: 14, name: "Cam Ward", pos: "QB", team: "TEN" },
+  { rank: 15, name: "Tre Harris", pos: "WR", team: "LAC" },
+  { rank: 16, name: "Jayden Higgins", pos: "WR", team: "HOU" },
+  { rank: 17, name: "Cam Skattebo", pos: "RB", team: "NYG" },
+  { rank: 18, name: "Jack Bech", pos: "WR", team: "LV" },
+  { rank: 19, name: "Jalen Milroe", pos: "QB", team: "SEA" },
+  { rank: 20, name: "Jaxson Dart", pos: "QB", team: "NYG" },
+  { rank: 21, name: "Tyler Shough", pos: "QB", team: "NO" },
+  { rank: 22, name: "Kyle Williams", pos: "WR", team: "NE" },
+  { rank: 23, name: "Jaylin Noel", pos: "WR", team: "HOU" },
+  { rank: 24, name: "Bhayshul Tuten", pos: "RB", team: "JAX" },
+  { rank: 25, name: "Dylan Sampson", pos: "RB", team: "CLE" },
+];
+
 // --- 2025 NFL DRAFT: ROUND 1 (actual results, in selection order) ---
 // Players listed in the order they were selected (pick 1 -> 32).
 export const DRAFT_2025_ROUND_1 = [
