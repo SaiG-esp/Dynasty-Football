@@ -103,7 +103,8 @@ npm run dev
 
 By default the frontend calls **same-origin `/api`**:
 - **Local:** Vite proxies `/api` → `http://localhost:8000` (run uvicorn)
-- **Production (Vercel):** serverless functions under `/api` (see `api/`)
+- **Production (Vercel):** serverless functions under `frontend/api/`
+  (the Vercel project Root Directory is `frontend`)
 
 Only set `VITE_API_BASE_URL` if you host FastAPI somewhere else.
 Do **not** put a CFBD key in any `VITE_*` variable — those are baked into the
@@ -113,6 +114,13 @@ Get a free CollegeFootballData API key at
 https://collegefootballdata.com/key and put it in `data-engine/.env` for local
 dev, and as a **Vercel project env var** named `CFBD_API_KEY` for production
 (Player Profile → Advanced uses `/api/players/advanced`).
+
+### Vercel notes
+
+- Project **Root Directory** must stay `frontend` (matches existing project settings).
+- Build command / output are defined in `frontend/vercel.json`
+  (`npm install && npm run build` → `dist`).
+- Advanced stats function: `frontend/api/players/advanced.py`
 
 ### Running tests
 

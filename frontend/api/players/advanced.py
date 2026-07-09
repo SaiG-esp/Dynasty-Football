@@ -1,7 +1,7 @@
 """Vercel serverless: GET /api/players/advanced
 
 Proxies CollegeFootballData server-side so the browser never holds CFBD_API_KEY.
-Reuses data-engine advanced_stats / cfbd_client logic.
+Lives under frontend/ because the Vercel project Root Directory is `frontend`.
 """
 from __future__ import annotations
 
@@ -11,11 +11,10 @@ from http.server import BaseHTTPRequestHandler
 from pathlib import Path
 from urllib.parse import parse_qs, urlparse
 
-# Make data-engine importable when this function is bundled on Vercel.
-_ROOT = Path(__file__).resolve().parents[2]
-_DATA_ENGINE = _ROOT / "data-engine"
-if str(_DATA_ENGINE) not in sys.path:
-    sys.path.insert(0, str(_DATA_ENGINE))
+# Vendored CFBD helpers live in frontend/api/_lib
+_LIB = Path(__file__).resolve().parents[1] / "_lib"
+if str(_LIB) not in sys.path:
+    sys.path.insert(0, str(_LIB))
 
 
 def _json_response(handler: BaseHTTPRequestHandler, status: int, payload: dict) -> None:
@@ -31,12 +30,10 @@ def _json_response(handler: BaseHTTPRequestHandler, status: int, payload: dict) 
 def _handle_advanced(query: dict) -> tuple[int, dict]:
     import os
 
-    # Strip whitespace/newlines — cloud secrets sometimes include a trailing \n.
     api_key = (os.environ.get("CFBD_API_KEY") or "").strip()
     if not api_key:
         return 503, {"detail": "CFBD_API_KEY is not configured on the server"}
 
-    # Ensure config.API_KEY reflects the cleaned value for this request.
     import config
 
     config.API_KEY = api_key
@@ -84,5 +81,5 @@ class handler(BaseHTTPRequestHandler):
         status, payload = _handle_advanced(query)
         _json_response(self, status, payload)
 
-    def log_message(self, format, *args):  # noqa: A003 — silence default access logs
+    def log_message(self, format, *args):  # noqa: A003
         return
