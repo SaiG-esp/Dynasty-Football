@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { PROSPECTS_2025, CFP_MATCHUPS, BOWL_GAMES, FIRST_ROUND_ORDER } from '../data/mockData.js'
+import { PROSPECTS_2026, CFP_MATCHUPS, BOWL_GAMES, FIRST_ROUND_ORDER } from '../data/mockData.js'
 
 function Home() {
   return (
@@ -9,7 +9,7 @@ function Home() {
       <div className="welcome-card">
         <div className="welcome-text">
           <h1>Dynasty Scout</h1>
-          <p>Your War Room for the 2025 Rookie Draft.</p>
+          <p>Your War Room for the 2026 Rookie Draft.</p>
         </div>
         <Link to="/rankings">
           <button className="primary-btn">Analyze Defense &rarr;</button>
@@ -73,7 +73,7 @@ function Home() {
           <div className="dashboard-card">
             <div className="section-title">🔥 Offensive Big Board</div>
             <div className="scroll-area">
-              {PROSPECTS_2025.map((p, index) => (
+              {PROSPECTS_2026.map((p, index) => (
                 <div key={p.id} className="draft-item">
                   
                   {/* 1. LEFT: Rank + Name */}

@@ -4,7 +4,7 @@
     "name": "Trinidad Chambliss",
     "school": "Ole Miss",
     "pos": "QB",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "4,472",
       "s2": "30",
@@ -1517,7 +1517,7 @@
     "name": "Fernando Mendoza",
     "school": "Indiana",
     "pos": "QB",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "3,811",
       "s2": "48",
@@ -1806,7 +1806,7 @@
     "name": "Dante Moore",
     "school": "Oregon",
     "pos": "QB",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "3,721",
       "s2": "32",
@@ -3251,7 +3251,7 @@
     "name": "Ty Simpson",
     "school": "Alabama",
     "pos": "QB",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "3,660",
       "s2": "30",
@@ -3982,7 +3982,7 @@
     "name": "Julian Sayin",
     "school": "Ohio State",
     "pos": "QB",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "3,566",
       "s2": "32",
@@ -13621,7 +13621,7 @@
     "name": "Emmett Johnson",
     "school": "Nebraska",
     "pos": "RB",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "1,821",
       "s2": "15",
@@ -14692,7 +14692,7 @@
     "name": "Jeremiyah Love",
     "school": "Notre Dame",
     "pos": "RB",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "1,652",
       "s2": "21",
@@ -15593,7 +15593,7 @@
     "name": "LJ Martin",
     "school": "BYU",
     "pos": "RB",
-    "trend": "flat",
+    "trend": "down",
     "stats": {
       "s1": "1,560",
       "s2": "12",
@@ -21526,7 +21526,7 @@
     "name": "Makai Lemon",
     "school": "USC",
     "pos": "WR",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "1,184",
       "s2": "14",
@@ -22597,7 +22597,7 @@
     "name": "Jonah Coleman",
     "school": "Washington",
     "pos": "RB",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "1,112",
       "s2": "17",
@@ -26184,7 +26184,7 @@
     "name": "Omar Cooper Jr.",
     "school": "Indiana",
     "pos": "WR",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "1,035",
       "s2": "14",
@@ -31131,7 +31131,7 @@
     "name": "Justice Haynes",
     "school": "Michigan",
     "pos": "RB",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "907",
       "s2": "10",
@@ -31930,7 +31930,7 @@
     "name": "Carnell Tate",
     "school": "Ohio State",
     "pos": "WR",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "891",
       "s2": "9",
@@ -36537,7 +36537,7 @@
     "name": "Zachariah Branch",
     "school": "Georgia",
     "pos": "WR",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "818",
       "s2": "6",
@@ -38084,7 +38084,7 @@
     "name": "Elijah Sarratt",
     "school": "Indiana",
     "pos": "WR",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "806",
       "s2": "15",
@@ -41892,7 +41892,7 @@
     "name": "Nicholas Singleton",
     "school": "Penn State",
     "pos": "RB",
-    "trend": "flat",
+    "trend": "down",
     "stats": {
       "s1": "768",
       "s2": "14",
@@ -42113,7 +42113,7 @@
     "name": "Eli Stowers",
     "school": "Vanderbilt",
     "pos": "TE",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "767",
       "s2": "4",
@@ -43898,7 +43898,7 @@
     "name": "Ja'Kobi Lane",
     "school": "USC",
     "pos": "WR",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "745",
       "s2": "4",
@@ -46924,7 +46924,7 @@
     "name": "Jordyn Tyson",
     "school": "Arizona State",
     "pos": "WR",
-    "trend": "flat",
+    "trend": "up",
     "stats": {
       "s1": "715",
       "s2": "9",
@@ -48063,7 +48063,7 @@
     "name": "Michael Trigg",
     "school": "Baylor",
     "pos": "TE",
-    "trend": "flat",
+    "trend": "down",
     "stats": {
       "s1": "694",
       "s2": "6",

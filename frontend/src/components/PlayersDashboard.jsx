@@ -29,7 +29,7 @@ const PlayersDashboard = ({ onPlayerClick }) => {
       
       {/* Header */}
       <div className="players-header-row">
-        <h1 className="page-title">2024 Player Database</h1>
+        <h1 className="page-title">2026 Draft Class Database</h1>
         <div className="search-wrapper">
           <input 
             type="text" 
