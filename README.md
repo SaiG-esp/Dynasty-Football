@@ -15,8 +15,16 @@ A college football dynasty/rookie draft scouting dashboard. It has two parts:
 ```
 data-engine/fetch_directory.py  ─┐
 data-engine/fetch_details.py    ─┴─► frontend/src/prospects.json ─► frontend (Players / Player Profile)
-data-engine/matchup_data3.py    ────► PostgreSQL (defensive_intel) ─► data-engine/main.py (FastAPI, not currently called by the frontend)
+data-engine/matchup_data3.py    ────► PostgreSQL (defensive_intel) ─► data-engine/main.py (FastAPI) ─► frontend (Defensive Rankings)
 ```
+
+The Defensive Rankings page has no hardcoded havoc/sacks/turnover numbers.
+`RankingsDashboard.jsx` fetches `GET /defenses` on load and merges the live
+numbers onto the frontend's static team metadata (name, brand color,
+conference grouping) by team name — see
+`frontend/src/utils/mergeDefenseStats.js`. If the API is unreachable, the
+page still renders every team (colors, names, conference groups) with `-`
+in place of the missing stats instead of breaking.
 
 `frontend/src/prospects.json` is the one generated data file that's checked
 into the repo, since the frontend reads it directly at build/run time.
@@ -45,36 +53,63 @@ different slice of stats:
 
 ## Getting started
 
-### Frontend
+### 1. Database
+
+`main.py` (FastAPI) and `matchup_data3.py` (the ETL that populates it) both
+expect a PostgreSQL database with a `defensive_intel` table:
 
 ```bash
-cd frontend
-npm install
-cp .env.example .env   # add your CollegeFootballData API key
-npm run dev
+# Local Postgres, e.g.:
+createdb postgres    # if it doesn't already exist
+psql -d postgres -f data-engine/defensive_intel.sql
 ```
 
-The player profile view calls the CollegeFootballData API directly from the
-browser using `VITE_CFBD_API_KEY`.
-
-### Data engine
+### 2. Data engine
 
 ```bash
 cd data-engine
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
-cp .env.example .env    # add your CollegeFootballData API key
-python3 fetch_directory.py   # builds frontend/src/prospects.json
-python3 fetch_details.py     # enriches it with game logs, etc.
+cp .env.example .env    # add your CollegeFootballData API key + DB credentials
+
+python3 fetch_directory.py    # builds frontend/src/prospects.json
+python3 fetch_details.py      # enriches it with game logs, etc.
+python3 matchup_data3.py      # populates defensive_intel in Postgres
+
+uvicorn main:app --reload     # starts the API on http://localhost:8000
 ```
 
-`main.py` (FastAPI) expects a local PostgreSQL database with a
-`defensive_intel` table (see `defensive_intel.sql`) populated by
-`matchup_data3.py`.
+Re-run `matchup_data3.py` periodically (e.g. weekly during the season) to
+refresh the defensive stats — `main.py` just reads whatever is currently in
+the table.
+
+### 3. Frontend
+
+```bash
+cd frontend
+npm install
+cp .env.example .env   # add your CollegeFootballData API key + API base URL
+npm run dev
+```
+
+The player profile view calls the CollegeFootballData API directly from the
+browser using `VITE_CFBD_API_KEY`. Defensive Rankings calls the FastAPI
+backend at `VITE_API_BASE_URL` (defaults to `http://localhost:8000`).
 
 Get a free CollegeFootballData API key at
 https://collegefootballdata.com/key.
+
+### Running the merge-logic tests
+
+The join between live `/defenses` API data and the frontend's static team
+metadata (`frontend/src/utils/mergeDefenseStats.js`) has a small
+dependency-free test suite:
+
+```bash
+cd frontend
+npm test
+```
 
 ## Notes
 
