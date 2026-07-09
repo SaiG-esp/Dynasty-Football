@@ -1,3 +1,4 @@
+import sys
 import warnings
 import psycopg2
 from psycopg2.extras import execute_values
@@ -6,16 +7,8 @@ from psycopg2.extras import execute_values
 warnings.filterwarnings("ignore", category=UserWarning, module='urllib3')
 from config import API_KEY, HEADERS
 from defense_intel import prefetch_defensive_intel, get_havoc_rating, OPPONENT_INTEL
+from db_config import DB_CONFIG
 YEAR = 2024
-
-# Database Config (Matches your Local Setup)
-DB_CONFIG = {
-    "dbname": "postgres",
-    "user": "jarvis",
-    "password": "",  # Leave empty since you have no password
-    "host": "localhost",
-    "port": "5432"
-}
 
 def update_database():
     """
@@ -61,8 +54,10 @@ def update_database():
         print(f"\n❌ Database Error: {e}")
 
 if __name__ == "__main__":
+    year = int(sys.argv[1]) if len(sys.argv) > 1 else YEAR
+
     # 1. Fetch the stats from the internet
-    prefetch_defensive_intel()
-    
-    # 2. Save them to your new Database table
+    prefetch_defensive_intel(year)
+
+    # 2. Save them to your database table
     update_database()
