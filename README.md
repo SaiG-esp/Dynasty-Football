@@ -24,10 +24,24 @@ Everything else `data-engine/*.py` scripts write out (raw CSV dumps, one-off
 analysis files) is treated as disposable local output and is **not**
 committed — rerun the relevant script to regenerate it.
 
-The other `data-engine` scripts (`master_scout*.py`, `scout_3rd_down*.py`,
-`redzone_stats.py`/`check_redzone.py`, `betting_data.py`, `target_share.py`,
-etc.) are standalone exploratory/analysis tools used while researching
-players and matchups. They aren't part of the frontend's data pipeline.
+The other `data-engine` scripts are standalone, interactive CLI research
+tools used while scouting players and matchups. They aren't part of the
+frontend's data pipeline, but each one prints (and saves a CSV of) a
+different slice of stats:
+
+| Script | What it reports |
+|---|---|
+| `player_game_log.py` | Per-game box score (passing/rushing/receiving, position-aware) + completion % + explosive play counts (runs > 15 yds, catches/throws > 20 yds) |
+| `redzone_report.py` | Team red-zone trips computed from play-by-play (split into TDs vs. FGs) alongside the API's official trip/score numbers as a cross-check, plus the player's own red-zone touches/yards/TDs |
+| `betting_report.py` | Spread, over/under, implied points, and a 1-10 relative difficulty rating vs. the team's own average line |
+| `usage_report.py` | Touch share of all offensive snaps *and* a situational (game-script-neutral) touch share that excludes obvious-run downs |
+| `scout_3rd_down.py` | 3rd-down passing conversion, player (from play-by-play) vs. team (official box score) |
+| `matchup_data.py` | Per-team schedule difficulty: betting spread + opponent defensive "havoc" rating per game |
+| `matchup_data3.py` | Bulk-loads every FBS team's defensive havoc rating into Postgres, powering `main.py`'s `/defenses` endpoint |
+| `defense_intel.py` | Shared havoc-formula module used by both matchup scripts (not run directly) |
+| `run_or_pass.py` | Weekly run/pass tendency breakdown by down and distance |
+| `get_pbp_api.py` | Raw play-by-play fetch/inspection helper |
+| `2024_stats.py` / `debug_stats.py` | Diagnostic pair that cross-checks CFBD numbers against an independent dataset (`2024_stats.py` downloads it, `debug_stats.py` digs into any mismatches) |
 
 ## Getting started
 
