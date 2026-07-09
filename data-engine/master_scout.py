@@ -5,8 +5,7 @@ from dateutil import parser
 
 # 1. SETUP
 warnings.filterwarnings("ignore", category=UserWarning, module='urllib3')
-API_KEY = "RB6XKAKaHDQniZB8mLcR4jP30+NeVZw/YCEZcBKeSpKIYuZmBNhswNNkBHLvNxf1"
-HEADERS = { "Authorization": f"Bearer {API_KEY}" }
+from config import API_KEY, HEADERS
 CURRENT_YEAR = 2024
 
 def search_player(name_query):

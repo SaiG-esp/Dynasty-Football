@@ -7,7 +7,7 @@ import warnings
 warnings.filterwarnings("ignore", category=UserWarning, module='urllib3')
 
 # --- CONFIGURATION ---
-API_KEY = "RB6XKAKaHDQniZB8mLcR4jP30+NeVZw/YCEZcBKeSpKIYuZmBNhswNNkBHLvNxf1"
+from config import API_KEY
 
 PLAYER_TARGET = "Jeremiah Smith"
 TEAM_TARGET = "Ohio State"

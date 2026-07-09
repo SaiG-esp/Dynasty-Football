@@ -6,8 +6,7 @@ from dateutil import parser
 # 1. SETUP
 warnings.filterwarnings("ignore", category=UserWarning, module='urllib3')
 
-API_KEY = "RB6XKAKaHDQniZB8mLcR4jP30+NeVZw/YCEZcBKeSpKIYuZmBNhswNNkBHLvNxf1"
-HEADERS = { "Authorization": f"Bearer {API_KEY}" }
+from config import API_KEY, HEADERS
 
 # Standard default year, but we could make this an input too if you want history
 CURRENT_YEAR = 2024 
