@@ -10,7 +10,7 @@ import PlayersDashboard from './components/PlayersDashboard';
 import PlayoffBracket from './components/PlayoffBracket'; // <--- 1. NEW IMPORT
 
 // Data
-import { samplePlayers, PROSPECTS_2025, PLAYER_DATABASE } from './data';
+import { samplePlayers, PROSPECTS_2026, PLAYER_DATABASE } from './data';
 
 function App() {
   const [view, setView] = useState('home');
@@ -20,7 +20,7 @@ function App() {
   useEffect(() => {
     console.log("App Loaded.");
     console.log("Big DB Size:", PLAYER_DATABASE ? PLAYER_DATABASE.length : 0);
-    console.log("Curated DB Size:", PROSPECTS_2025 ? PROSPECTS_2025.length : 0);
+    console.log("Curated DB Size:", PROSPECTS_2026 ? PROSPECTS_2026.length : 0);
   }, []);
 
   const handlePlayerClick = (id) => {
@@ -34,7 +34,7 @@ function App() {
     
     // Check Curated List
     if (!found) {
-        found = (PROSPECTS_2025 || []).find(p => String(p.id) === searchId);
+        found = (PROSPECTS_2026 || []).find(p => String(p.id) === searchId);
     }
 
     // Check Sample Data (Fallback)

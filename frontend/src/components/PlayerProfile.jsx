@@ -255,7 +255,7 @@ const PlayerProfile = ({ player, onBack }) => {
         {/* TAB 1: STANDARD GAME LOG */}
         {activeTab === 'GAME LOG' && (
           <div className="data-card">
-             <div className="card-header"><h3>2025 Season Stats</h3></div>
+             <div className="card-header"><h3>2025 College Season Stats</h3></div>
              <table className="profile-table">
                <thead>
                  <tr><th align="left">WEEK</th><th align="left">OPPONENT</th>{isQB && <><th>C/ATT</th><th>YDS</th><th>TD</th><th>INT</th><th>RUSH</th></>}{isRB && <><th>CAR</th><th>YDS</th><th>AVG</th><th>TD</th><th>REC</th></>}{(!isQB && !isRB) && <><th>REC</th><th>YDS</th><th>AVG</th><th>TD</th></>}</tr>

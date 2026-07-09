@@ -1,6 +1,6 @@
 import React from 'react';
 import './HomeDashboard.css';
-import { CFP_MATCHUPS, BOWL_GAMES, FIRST_ROUND_ORDER, PROSPECTS_2025 } from '../data';
+import { CFP_MATCHUPS, BOWL_GAMES, FIRST_ROUND_ORDER, PROSPECTS_2026 } from '../data';
 
 const HomeDashboard = ({ setView }) => {
   return (
@@ -10,7 +10,7 @@ const HomeDashboard = ({ setView }) => {
       <div className="welcome-card">
         <div className="welcome-text">
           <h1>Dynasty Scout</h1>
-          <p>Your War Room for the 2025 Rookie Draft.</p>
+          <p>Your War Room for the 2026 Rookie Draft.</p>
         </div>
         <button className="primary-btn" onClick={() => setView('rankings')}>
           Analyze Defense &rarr;
@@ -69,7 +69,7 @@ const HomeDashboard = ({ setView }) => {
           <div className="dashboard-card fixed-height">
             <div className="section-title">🔥 Offensive Big Board</div>
             <div className="scroll-area">
-              {PROSPECTS_2025.map((p, index) => (
+              {PROSPECTS_2026.map((p, index) => (
                 <div key={p.id} className="draft-item">
                   <div className="player-main">
                     <div className="rank-badge">{index + 1}</div>

@@ -1,29 +1,30 @@
-export const ROOKIES_2024 = [
-    { id: 1, name: "Marvin Harrison Jr.", team: "ARI", pos: "WR", points: 14.2 },
-    { id: 2, name: "Malik Nabers", team: "NYG", pos: "WR", points: 15.6 },
-    { id: 3, name: "Jayden Daniels", team: "WAS", pos: "QB", points: 22.1 },
-    { id: 4, name: "Brock Bowers", team: "LV", pos: "TE", points: 12.8 },
-    { id: 5, name: "Brian Thomas Jr.", team: "JAX", pos: "WR", points: 13.5 },
+// Legacy / unused page data — kept in sync with the 2026 draft cycle.
+// Live app reads from ../data.jsx instead.
+
+export const ROOKIES_2025 = [
+    { id: 1, name: "Cam Ward", team: "TEN", pos: "QB", points: 18.4 },
+    { id: 2, name: "Ashton Jeanty", team: "LV", pos: "RB", points: 16.8 },
+    { id: 3, name: "Travis Hunter", team: "JAX", pos: "WR", points: 15.2 },
+    { id: 4, name: "Tetairoa McMillan", team: "CAR", pos: "WR", points: 13.9 },
+    { id: 5, name: "Omarion Hampton", team: "LAC", pos: "RB", points: 13.1 },
 ];
 
-// FILTERED: Only offensive skill positions (QB, RB, WR, TE)
-// Travis Hunter stays because he plays WR. Mason Graham (DL) is removed.
-// ... keep ROOKIES_2024 ...
+export const ROOKIES_2024 = ROOKIES_2025;
 
-export const PROSPECTS_2025 = [
-    { id: 1, name: "Travis Hunter", school: "Colorado", pos: "WR/CB", trend: "up" },
-    { id: 2, name: "Ashton Jeanty", school: "Boise State", pos: "RB", trend: "up" },
-    { id: 3, name: "Tetairoa McMillan", school: "Arizona", pos: "WR", trend: "flat" },
-    { id: 4, name: "Shedeur Sanders", school: "Colorado", pos: "QB", trend: "down" }, // Controversy drop
-    { id: 5, name: "Luther Burden III", school: "Missouri", pos: "WR", trend: "down" },
-    { id: 6, name: "Cam Ward", school: "Miami", pos: "QB", trend: "up" },
-    { id: 7, name: "Emeka Egbuka", school: "Ohio State", pos: "WR", trend: "flat" },
-    { id: 8, name: "Omarion Hampton", school: "UNC", pos: "RB", trend: "up" },
-    { id: 9, name: "Quinshon Judkins", school: "Ohio State", pos: "RB", trend: "down" },
-    { id: 10, name: "TreVeyon Henderson", school: "Ohio State", pos: "RB", trend: "flat" },
+export const PROSPECTS_2026 = [
+    { id: 4837248, name: "Fernando Mendoza", school: "Indiana", pos: "QB", trend: "up" },
+    { id: 4870808, name: "Jeremiyah Love", school: "Notre Dame", pos: "RB", trend: "up" },
+    { id: 4871023, name: "Carnell Tate", school: "Ohio State", pos: "WR", trend: "up" },
+    { id: 4880281, name: "Jordyn Tyson", school: "Arizona State", pos: "WR", trend: "up" },
+    { id: 4870795, name: "Makai Lemon", school: "USC", pos: "WR", trend: "up" },
+    { id: 5083315, name: "Kenyon Sadiq", school: "Oregon", pos: "TE", trend: "flat" },
+    { id: 4685522, name: "Ty Simpson", school: "Alabama", pos: "QB", trend: "up" },
+    { id: 4723820, name: "Omar Cooper Jr.", school: "Indiana", pos: "WR", trend: "up" },
+    { id: 4870653, name: "KC Concepcion", school: "Texas A&M", pos: "WR", trend: "flat" },
+    { id: 4685512, name: "Jadarian Price", school: "Notre Dame", pos: "RB", trend: "flat" },
 ];
 
-// ... keep CFP_MATCHUPS, BOWL_GAMES, FIRST_ROUND_ORDER ...
+export const PROSPECTS_2025 = PROSPECTS_2026;
 
 export const CFP_MATCHUPS = [
     { id: 1, home: "Oregon", away: "Ohio State", date: "Jan 20", time: "8:00 PM" },
@@ -36,39 +37,34 @@ export const BOWL_GAMES = [
     { id: 3, home: "Ole Miss", away: "Iowa", date: "Dec 30", time: "3:30 PM" },
 ];
 
-// NEW: Current Projected Top 10 Order
 export const FIRST_ROUND_ORDER = [
-    { pick: 1, team: "New York Giants", needs: "QB" },
-    { pick: 2, team: "Tennessee Titans", needs: "QB/WR" },
-    { pick: 3, team: "Jacksonville Jaguars", needs: "OL/CB" },
-    { pick: 4, team: "Cleveland Browns", needs: "QB/OL" },
-    { pick: 5, team: "Las Vegas Raiders", needs: "QB" },
-    { pick: 6, team: "New England Patriots", needs: "WR/OL" },
-    { pick: 7, team: "New Orleans Saints", needs: "QB" },
-    { pick: 8, team: "Carolina Panthers", needs: "WR/EDGE" },
-    { pick: 9, team: "New York Jets", needs: "OL/QB" },
-    { pick: 10, team: "Miami Dolphins", needs: "OL/DL" },
+    { pick: 1, team: "Las Vegas Raiders", needs: "QB · Mendoza" },
+    { pick: 2, team: "New York Jets", needs: "EDGE · Bailey" },
+    { pick: 3, team: "Arizona Cardinals", needs: "RB · Love" },
+    { pick: 4, team: "Tennessee Titans", needs: "WR · Tate" },
+    { pick: 5, team: "New York Giants", needs: "EDGE · Reese" },
+    { pick: 6, team: "Kansas City Chiefs", needs: "CB · Delane" },
+    { pick: 7, team: "Washington Commanders", needs: "LB · Styles" },
+    { pick: 8, team: "New Orleans Saints", needs: "WR · Tyson" },
+    { pick: 9, team: "Cleveland Browns", needs: "OT · Fano" },
+    { pick: 10, team: "New York Giants", needs: "OT · Mauigoa" },
 ];
 
-// ... keep ROOKIES_2024, PROSPECTS_2025, etc ...
-
-// ... keep ROOKIES_2024, PROSPECTS_2025, etc ...
-
 export const SEC_TEAMS = [
-    { rank: 1, name: "Georgia", record: "12-1", havoc: "22%", ppg: "10.2", color: "#BA0C2F" },
-    { rank: 2, name: "Texas", record: "11-2", havoc: "20%", ppg: "11.4", color: "#BF5700" },
-    { rank: 3, name: "Alabama", record: "11-2", havoc: "19%", ppg: "13.1", color: "#9E1B32" },
-    { rank: 4, name: "Ole Miss", record: "10-2", havoc: "18%", ppg: "14.5", color: "#CE1126" },
-    { rank: 5, name: "Tennessee", record: "10-2", havoc: "17%", ppg: "15.2", color: "#FF8200" },
-    { rank: 6, name: "LSU", record: "9-3", havoc: "16%", ppg: "17.8", color: "#461D7C" },
-    { rank: 7, name: "Missouri", record: "10-2", havoc: "15%", ppg: "18.5", color: "#F1B82D" },
-    { rank: 8, name: "Oklahoma", record: "10-2", havoc: "14%", ppg: "19.2", color: "#841617" },
-    { rank: 9, name: "Texas A&M", record: "7-5", havoc: "14%", ppg: "21.4", color: "#500000" },
-    { rank: 10, name: "Auburn", record: "6-6", havoc: "13%", ppg: "22.1", color: "#0C2340" },
-    { rank: 11, name: "Kentucky", record: "7-5", havoc: "12%", ppg: "23.5", color: "#0033A0" },
-    { rank: 12, name: "Florida", record: "5-7", havoc: "11%", ppg: "25.8", color: "#FA4616" },
-    { rank: 13, name: "South Carolina", record: "5-7", havoc: "11%", ppg: "26.2", color: "#73000A" },
-    { rank: 14, name: "Arkansas", record: "4-8", havoc: "10%", ppg: "28.4", color: "#9D2235" },
-    { rank: 15, name: "Mississippi State", record: "5-7", havoc: "9%", ppg: "29.5", color: "#660000" },
-    { rank: 16, name: "Vanderbilt", record: "2-10", havoc: "8%", ppg: "34.1", color: "#866D4B" },
+    { rank: 1, name: "Oklahoma", record: "10-3", havoc: "98%", ppg: "14.2", color: "#841617" },
+    { rank: 2, name: "Missouri", record: "9-4", havoc: "94%", ppg: "15.8", color: "#F1B82D" },
+    { rank: 3, name: "Auburn", record: "7-6", havoc: "61%", ppg: "18.1", color: "#0C2340" },
+    { rank: 4, name: "Alabama", record: "11-3", havoc: "80%", ppg: "16.4", color: "#9E1B32" },
+    { rank: 5, name: "LSU", record: "8-5", havoc: "69%", ppg: "19.2", color: "#461D7C" },
+    { rank: 6, name: "South Carolina", record: "7-6", havoc: "55%", ppg: "20.5", color: "#73000A" },
+    { rank: 7, name: "Texas", record: "10-3", havoc: "82%", ppg: "17.0", color: "#BF5700" },
+    { rank: 8, name: "Georgia", record: "12-2", havoc: "44%", ppg: "15.1", color: "#BA0C2F" },
+    { rank: 9, name: "Texas A&M", record: "11-2", havoc: "97%", ppg: "16.8", color: "#500000" },
+    { rank: 10, name: "Ole Miss", record: "13-2", havoc: "65%", ppg: "18.4", color: "#14213D" },
+    { rank: 11, name: "Tennessee", record: "9-4", havoc: "86%", ppg: "19.9", color: "#FF8200" },
+    { rank: 12, name: "Kentucky", record: "6-7", havoc: "34%", ppg: "22.4", color: "#0033A0" },
+    { rank: 13, name: "Florida", record: "5-7", havoc: "31%", ppg: "24.1", color: "#FA4616" },
+    { rank: 14, name: "Vanderbilt", record: "10-3", havoc: "69%", ppg: "20.8", color: "#866D4B" },
+    { rank: 15, name: "Mississippi State", record: "5-7", havoc: "22%", ppg: "26.2", color: "#660000" },
+    { rank: 16, name: "Arkansas", record: "4-8", havoc: "49%", ppg: "28.5", color: "#9D2235" },
 ];
