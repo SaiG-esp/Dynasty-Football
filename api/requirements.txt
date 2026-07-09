@@ -1,0 +1,2 @@
+# Dependencies for Vercel Python serverless functions under /api.
+requests>=2.31.0
