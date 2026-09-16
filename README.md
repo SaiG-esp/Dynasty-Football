@@ -1,75 +1,80 @@
-# Dynasty Football
+# Dynasty Scout
 
-A college football dynasty/rookie draft scouting dashboard. It has two parts:
+College football dynasty scouting: live defensive rankings, matchup intel, and a searchable 2026 rookie draft board.
 
-- **`frontend/`** — React + Vite single-page app. This is the UI: a home
-  dashboard, defensive rankings, a playoff bracket, and a searchable player
-  database with a per-player profile view.
-- **`data-engine/`** — Python scripts that pull data from the
-  [CollegeFootballData API](https://collegefootballdata.com/) and generate
-  the data the frontend consumes, plus a FastAPI service backed by
-  PostgreSQL for defensive matchup intel and player advanced stats.
+**Live demo:** [https://cfbanalyzer.xyz](https://cfbanalyzer.xyz)
 
-## How the pieces connect
+![Dynasty Scout home dashboard](docs/images/home.png)
+
+[![CI](https://github.com/SaiG-esp/Dynasty-Football/actions/workflows/ci.yml/badge.svg)](https://github.com/SaiG-esp/Dynasty-Football/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+## What it does
+
+Dynasty Scout is a war-room dashboard for dynasty fantasy football. It combines a React scouting UI with a Python data engine that pulls CollegeFootballData (CFBD) stats so you can:
+
+- Rank FBS defenses by a custom **havoc** formula (TFL, sacks, takeaways, pass breakups)
+- Browse a **searchable player database** of the 2026 class with per-player profiles
+- Load **red-zone usage and betting context** on a player without exposing API keys in the browser
+- Inspect a **playoff / matchup** view alongside the draft board
+
+## System architecture
+
+```
+Browser (React + Vite SPA)
+        │  same-origin /api
+        ▼
+┌─────────────────────────────────────────────────────────┐
+│  Local: FastAPI (data-engine/main.py) + PostgreSQL      │
+│  Production: Vercel serverless functions (frontend/api) │
+└─────────────────────────────────────────────────────────┘
+        │
+        ▼
+CollegeFootballData API (server-side CFBD_API_KEY only)
+```
+
+| Layer | Choice | Why |
+|---|---|---|
+| **Frontend** | React 19 + Vite | Fast SPA with HMR; static player JSON ships with the bundle |
+| **Backend (local)** | FastAPI + Uvicorn | Thin JSON API over Postgres and CFBD |
+| **Backend (prod)** | Vercel Python serverless | Same `/api/defenses` and `/api/players/advanced` contracts without hosting Postgres |
+| **Database** | PostgreSQL (`defensive_intel`) | Local cache of FBS havoc ratings loaded by `matchup_data3.py` |
+| **External data** | [CollegeFootballData](https://collegefootballdata.com/) | Official FBS stats, PBP, and betting lines |
+
+The browser never talks to CFBD and never holds an API key. `frontend/src/prospects.json` is the one generated data file checked in; other script outputs stay local.
 
 ```
 data-engine/fetch_directory.py  ─┐
-data-engine/fetch_details.py    ─┴─► frontend/src/prospects.json ─► frontend (Players / Player Profile)
-data-engine/matchup_data3.py    ────► PostgreSQL (defensive_intel) ─► GET /defenses ─► frontend (Defensive Rankings)
-CollegeFootballData API (server-side only) ─► GET /players/advanced ─► frontend (Player Profile advanced stats)
+data-engine/fetch_details.py    ─┴─► frontend/src/prospects.json ─► Players / Player Profile
+data-engine/matchup_data3.py    ────► PostgreSQL ─► GET /defenses ─► Defensive Rankings (local)
+CollegeFootballData (server-side) ─► GET /players/advanced ─► Player Profile advanced stats
 ```
 
-**Defensive Rankings** has no hardcoded havoc/sacks/turnover numbers.
-`RankingsDashboard.jsx` fetches `GET /defenses` on load and merges the live
-numbers onto the frontend's static team metadata (name, brand color,
-conference grouping) by team name — see
-`frontend/src/utils/mergeDefenseStats.js`. If the API is unreachable, the
-page still renders every team with `-` in place of missing stats.
+If `/defenses` is unreachable, rankings still render every team with `-` for missing stats.
 
-**Player Profile advanced stats** (red-zone usage + betting context) are
-computed in FastAPI (`GET /players/advanced`). The browser never talks to
-CollegeFootballData and never holds a CFBD API key — only the backend does
-(`CFBD_API_KEY` in `data-engine/.env`).
+## Technical highlights
 
-`frontend/src/prospects.json` is the one generated data file that's checked
-into the repo, since the frontend reads it directly at build/run time.
-Everything else `data-engine/*.py` scripts write out (raw CSV dumps, one-off
-analysis files) is treated as disposable local output and is **not**
-committed — rerun the relevant script to regenerate it.
+- **Server-only CFBD proxy.** Advanced stats (red-zone usage + betting context) are computed on FastAPI / Vercel Python functions. The SPA only calls same-origin `/api`; Vite proxies that to `:8000` in development.
+- **Name-safe live merge.** `mergeDefenseStats.js` joins CFBD team names onto static conference metadata (including abbreviation aliases like `S. Carolina` → `South Carolina`) and degrades cleanly when a row is missing.
+- **Custom havoc formula.** Shared `defense_intel.py` scores every FBS defense as `(TFL + 2·INT + 2·FUM + 1.5·sacks + PD) / games` and bulk-loads the table that powers rankings.
 
-The other `data-engine` scripts are standalone, interactive CLI research
-tools used while scouting players and matchups. They aren't part of the
-frontend's data pipeline, but each one prints (and saves a CSV of) a
-different slice of stats:
+## Local setup
 
-| Script | What it reports |
-|---|---|
-| `player_game_log.py` | Per-game box score (passing/rushing/receiving, position-aware) + completion % + explosive play counts (runs > 15 yds, catches/throws > 20 yds) |
-| `redzone_report.py` | Team red-zone trips computed from play-by-play (split into TDs vs. FGs) alongside the API's official trip/score numbers as a cross-check, plus the player's own red-zone touches/yards/TDs |
-| `betting_report.py` | Spread, over/under, implied points, and a 1-10 relative difficulty rating vs. the team's own average line |
-| `usage_report.py` | Touch share of all offensive snaps *and* a situational (game-script-neutral) touch share that excludes obvious-run downs |
-| `scout_3rd_down.py` | 3rd-down passing conversion, player (from play-by-play) vs. team (official box score) |
-| `matchup_data.py` | Per-team schedule difficulty: betting spread + opponent defensive "havoc" rating per game |
-| `matchup_data3.py` | Bulk-loads every FBS team's defensive havoc rating into Postgres, powering `main.py`'s `/defenses` endpoint |
-| `defense_intel.py` | Shared havoc-formula module used by both matchup scripts (not run directly) |
-| `run_or_pass.py` | Weekly run/pass tendency breakdown by down and distance |
-| `get_pbp_api.py` | Raw play-by-play fetch/inspection helper |
-| `2024_stats.py` / `debug_stats.py` | Diagnostic pair that cross-checks CFBD numbers against an independent dataset (`2024_stats.py` downloads it, `debug_stats.py` digs into any mismatches) |
+Requires **Node 20+**, **Python 3.11+**, and **PostgreSQL**.
 
-## Getting started
+```bash
+git clone https://github.com/SaiG-esp/Dynasty-Football.git
+cd Dynasty-Football
+```
 
 ### 1. Database
 
-`main.py` (FastAPI) and `matchup_data3.py` (the ETL that populates it) both
-expect a PostgreSQL database with a `defensive_intel` table:
-
 ```bash
-# Local Postgres, e.g.:
-createdb postgres    # if it doesn't already exist
+createdb postgres    # skip if it already exists
 psql -d postgres -f data-engine/defensive_intel.sql
 ```
 
-### 2. Data engine
+### 2. Data engine / API
 
 ```bash
 cd data-engine
@@ -77,20 +82,18 @@ python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
 cp .env.example .env    # add CFBD_API_KEY + DB credentials
-
-python3 fetch_directory.py    # builds frontend/src/prospects.json
-python3 fetch_details.py      # enriches it with game logs, etc.
-python3 matchup_data3.py      # populates defensive_intel in Postgres
-
-uvicorn main:app --reload     # starts the API on http://localhost:8000
 ```
 
-Re-run `matchup_data3.py` periodically (e.g. weekly during the season) to
-refresh the defensive stats — `main.py` just reads whatever is currently in
-the table.
+Get a free CFBD key at https://collegefootballdata.com/key. Then optionally refresh data and start the API:
 
-`CFBD_API_KEY` is required for scripts that call CollegeFootballData and for
-`GET /players/advanced`. `GET /defenses` only needs Postgres.
+```bash
+python3 fetch_directory.py    # builds frontend/src/prospects.json
+python3 fetch_details.py      # enriches it with game logs
+python3 matchup_data3.py      # populates defensive_intel in Postgres
+uvicorn main:app --reload --port 8000
+```
+
+`GET /defenses` only needs Postgres. `GET /players/advanced` needs `CFBD_API_KEY`. Re-run `matchup_data3.py` periodically during the season to refresh rankings.
 
 ### 3. Frontend
 
@@ -101,56 +104,59 @@ cp .env.example .env   # usually leave VITE_API_BASE_URL unset
 npm run dev
 ```
 
-By default the frontend calls **same-origin `/api`**:
-- **Local:** Vite proxies `/api` → `http://localhost:8000` (run uvicorn)
-- **Production (Vercel):** serverless functions under `frontend/api/`
-  (the Vercel project Root Directory is `frontend`)
+Open http://localhost:5173. By default the app calls **same-origin `/api`**:
 
-Only set `VITE_API_BASE_URL` if you host FastAPI somewhere else.
-Do **not** put a CFBD key in any `VITE_*` variable — those are baked into the
-browser bundle.
+- **Local:** Vite proxies `/api` → `http://localhost:8000`
+- **Production (Vercel):** serverless functions under `frontend/api/` (project Root Directory is `frontend`)
 
-Get a free CollegeFootballData API key at
-https://collegefootballdata.com/key and put it in `data-engine/.env` for local
-dev, and as a **Vercel project env var** named `CFBD_API_KEY` for production
-(Player Profile → Advanced uses `/api/players/advanced`).
+Only set `VITE_API_BASE_URL` if FastAPI is hosted elsewhere. **Do not** put a CFBD key in any `VITE_*` variable — those are baked into the browser bundle.
 
-**If defensive rankings still show a 503 after adding the key:**
-
-1. Open the Vercel project that serves **cfbanalyzer.xyz** (not a different fork/project).
-2. **Settings → Environment Variables** → confirm a variable named exactly `CFBD_API_KEY`
-   (not `CFB_API_KEY` — missing the **D** — and not `VITE_CFBD_API_KEY`, which is browser-only).
-3. Ensure **Production** is checked for that variable.
-4. **Deployments → … → Redeploy** the latest Production deployment (saving the env var alone is not always enough).
-5. Visit `https://cfbanalyzer.xyz/api/health` — `cfbd.configured` should be `true` and
-   `git.owner` / `git.repo` should match the repo linked to that Vercel project.
-
-### Vercel notes
-
-- Project **Root Directory** must stay `frontend` (matches existing project settings).
-- Build command / output are defined in `frontend/vercel.json`
-  (`npm install && npm run build` → `dist`).
-- Advanced stats function: `frontend/api/players/advanced.py`
-- Defensive rankings function: `frontend/api/defenses.py` (live CFBD, no Postgres)
-- Health/diagnostics: `frontend/api/health.py` (`GET /api/health`)
-
-If a Vercel deploy still runs `npm install --prefix frontend`, clear any
-**Override** Build/Install/Output settings in the Vercel project so it uses
-`frontend/vercel.json` instead.
-
-### Running tests
+### Tests
 
 ```bash
-# Frontend merge-logic tests
-cd frontend && npm test
-
-# Backend advanced-stats unit tests (mocked CFBD)
+cd frontend && npm test && npm run lint
 cd data-engine && python3 -m unittest test_advanced_stats.py
 ```
 
+## Environment variables
+
+Templates with placeholders live in:
+
+- [`data-engine/.env.example`](data-engine/.env.example) — `CFBD_API_KEY`, Postgres, CORS
+- [`frontend/.env.example`](frontend/.env.example) — optional `VITE_API_BASE_URL`
+
+For production, set `CFBD_API_KEY` as a Vercel project env var (Production). Confirm with `https://cfbanalyzer.xyz/api/health` (`cfbd.configured` should be `true`).
+
+## Data-engine CLI tools
+
+Standalone research scripts (not required to run the UI). Each prints a report and can save a CSV:
+
+| Script | What it reports |
+|---|---|
+| `player_game_log.py` | Per-game box score + explosive-play counts |
+| `redzone_report.py` | Team red-zone trips (PBP vs official) + player RZ touches |
+| `betting_report.py` | Spread, over/under, implied points, 1–10 difficulty vs team average |
+| `usage_report.py` | Touch share and game-script-neutral usage |
+| `scout_3rd_down.py` | 3rd-down passing conversion, player vs team |
+| `matchup_data.py` | Schedule difficulty: spread + opponent havoc |
+| `matchup_data3.py` | Bulk-load FBS havoc into Postgres for `/defenses` |
+| `defense_intel.py` | Shared havoc-formula module |
+| `run_or_pass.py` | Weekly run/pass tendency by down and distance |
+| `get_pbp_api.py` | Raw play-by-play fetch helper |
+
+## GitHub About box (maintainers)
+
+GitHub's sidebar cannot be set from this repo file. In **Settings → General**:
+
+- **Description:** College football dynasty scouting dashboard that turns live CFBD stats into defensive rankings, matchup intel, and a searchable 2026 rookie draft board.
+- **Website:** https://cfbanalyzer.xyz
+- **Topics:** `react` `vite` `fastapi` `postgresql` `python` `javascript`
+
+## License
+
+MIT. See [LICENSE](LICENSE).
+
 ## Notes
 
-- Any API keys previously committed to this repository's git history should
-  be considered compromised and rotated.
-- `data-engine/venv/`, `*.csv` output files, and Python caches are
-  git-ignored — do not commit them.
+- API keys that were previously committed in git history should be treated as compromised and rotated at collegefootballdata.com.
+- `venv/`, CSV dumps, and Python caches are git-ignored — do not commit them.

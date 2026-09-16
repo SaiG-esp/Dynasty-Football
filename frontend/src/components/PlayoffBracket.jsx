@@ -4,7 +4,15 @@ import './PlayoffBracket.css';
 // Data remains the same
 const bracketData = {
   firstRound: [
-    { id: 1, home: 'Oregon', seed: 5, score: 51, away: 'James Madison', awaySeed: 12, awayScore: 34 },
+    {
+      id: 1,
+      home: 'Oregon',
+      seed: 5,
+      score: 51,
+      away: 'James Madison',
+      awaySeed: 12,
+      awayScore: 34,
+    },
     { id: 2, home: 'Texas Tech', seed: 4, score: '-', away: 'BYE', awaySeed: '', awayScore: '' },
     { id: 3, home: 'Alabama', seed: 9, score: 34, away: 'Oklahoma', awaySeed: 8, awayScore: 24 },
     { id: 4, home: 'Indiana', seed: 1, score: '-', away: 'BYE', awaySeed: '', awayScore: '' },
@@ -25,22 +33,22 @@ const bracketData = {
   ],
   championship: [
     { id: 15, home: 'Indiana', seed: 1, score: 27, away: 'Miami', awaySeed: 10, awayScore: 21 },
-  ]
+  ],
 };
 
 const MatchCard = ({ match }) => {
   if (match.away === 'BYE') {
-     return (
-        <div className="match-card bye-card">
-            <div className="team-slot winner">
-                <div style={{display:'flex', gap:'8px'}}>
-                  <span className="seed">{match.seed}</span>
-                  <span className="team-name">{match.home}</span>
-                </div>
-                <span className="score">BYE</span>
-            </div>
+    return (
+      <div className="match-card bye-card">
+        <div className="team-slot winner">
+          <div style={{ display: 'flex', gap: '8px' }}>
+            <span className="seed">{match.seed}</span>
+            <span className="team-name">{match.home}</span>
+          </div>
+          <span className="score">BYE</span>
         </div>
-     );
+      </div>
+    );
   }
 
   const homeWin = parseInt(match.score) > parseInt(match.awayScore);
@@ -49,17 +57,17 @@ const MatchCard = ({ match }) => {
   return (
     <div className="match-card">
       <div className={`team-slot ${homeWin ? 'winner' : 'loser'}`}>
-        <div style={{display:'flex', gap:'6px'}}>
-            <span className="seed">{match.seed}</span>
-            <span className="team-name">{match.home}</span>
+        <div style={{ display: 'flex', gap: '6px' }}>
+          <span className="seed">{match.seed}</span>
+          <span className="team-name">{match.home}</span>
         </div>
         <span className="score">{match.score}</span>
       </div>
       <div className="match-divider"></div>
       <div className={`team-slot ${awayWin ? 'winner' : 'loser'}`}>
-        <div style={{display:'flex', gap:'6px'}}>
-            <span className="seed">{match.awaySeed}</span>
-            <span className="team-name">{match.away}</span>
+        <div style={{ display: 'flex', gap: '6px' }}>
+          <span className="seed">{match.awaySeed}</span>
+          <span className="team-name">{match.away}</span>
         </div>
         <span className="score">{match.awayScore}</span>
       </div>
@@ -76,51 +84,57 @@ const PlayoffBracket = () => {
       </div>
 
       <div className="bracket-grid">
-        
         {/* ROUND 1 */}
         <div className="round-column">
-            <h3>First Round</h3>
-            {bracketData.firstRound.map(m => <MatchCard key={m.id} match={m} />)}
+          <h3>First Round</h3>
+          {bracketData.firstRound.map((m) => (
+            <MatchCard key={m.id} match={m} />
+          ))}
         </div>
 
         {/* CONNECTOR 1 (4 Forks) */}
         <div className="connector-column">
-            <div className="bracket-fork"></div>
-            <div className="bracket-fork"></div>
-            <div className="bracket-fork"></div>
-            <div className="bracket-fork"></div>
+          <div className="bracket-fork"></div>
+          <div className="bracket-fork"></div>
+          <div className="bracket-fork"></div>
+          <div className="bracket-fork"></div>
         </div>
 
         {/* QUARTERFINALS */}
         <div className="round-column">
-            <h3>Quarterfinals</h3>
-            {bracketData.quarterfinals.map(m => <MatchCard key={m.id} match={m} />)}
+          <h3>Quarterfinals</h3>
+          {bracketData.quarterfinals.map((m) => (
+            <MatchCard key={m.id} match={m} />
+          ))}
         </div>
 
         {/* CONNECTOR 2 (2 Forks) */}
         <div className="connector-column">
-            <div className="bracket-fork"></div>
-            <div className="bracket-fork"></div>
+          <div className="bracket-fork"></div>
+          <div className="bracket-fork"></div>
         </div>
 
         {/* SEMIFINALS */}
         <div className="round-column">
-            <h3>Semifinals</h3>
-            {bracketData.semifinals.map(m => <MatchCard key={m.id} match={m} />)}
+          <h3>Semifinals</h3>
+          {bracketData.semifinals.map((m) => (
+            <MatchCard key={m.id} match={m} />
+          ))}
         </div>
 
         {/* CONNECTOR 3 (1 Fork) */}
         <div className="connector-column">
-            <div className="bracket-fork"></div>
+          <div className="bracket-fork"></div>
         </div>
 
         {/* CHAMPIONSHIP */}
         <div className="round-column championship-column">
-            <h3>National Title</h3>
-            <div className="trophy-icon">🏆</div>
-            {bracketData.championship.map(m => <MatchCard key={m.id} match={m} />)}
+          <h3>National Title</h3>
+          <div className="trophy-icon">🏆</div>
+          {bracketData.championship.map((m) => (
+            <MatchCard key={m.id} match={m} />
+          ))}
         </div>
-
       </div>
     </div>
   );

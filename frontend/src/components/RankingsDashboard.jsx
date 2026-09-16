@@ -2,11 +2,18 @@ import React, { useEffect, useMemo, useState } from 'react';
 import './RankingsDashboard.css';
 import { conferenceData, apTop25Data } from '../data';
 import { fetchDefenses, ApiError } from '../api';
-import { mergeConferenceData, buildEnrichedTop25, getLatestUpdatedAt } from '../utils/mergeDefenseStats';
+import {
+  mergeConferenceData,
+  buildEnrichedTop25,
+  getLatestUpdatedAt,
+} from '../utils/mergeDefenseStats';
 
 const TeamRow = ({ team, rank }) => (
   <div className="team-row">
-    <div className="rank-box" style={{ backgroundColor: team.color || '#333', color: team.darkText ? '#000' : '#fff' }}>
+    <div
+      className="rank-box"
+      style={{ backgroundColor: team.color || '#333', color: team.darkText ? '#000' : '#fff' }}
+    >
       {rank}
     </div>
     <div className="team-info">
@@ -33,13 +40,9 @@ const ConferenceCard = ({ title, teams }) => (
       <span>{teams.length} Teams</span>
     </div>
     <div className="table-container">
-        {teams.map((team, index) => (
-          <TeamRow
-            key={team.name}
-            rank={team.rank || index + 1}
-            team={team}
-          />
-        ))}
+      {teams.map((team, index) => (
+        <TeamRow key={team.name} rank={team.rank || index + 1} team={team} />
+      ))}
     </div>
   </div>
 );
@@ -59,7 +62,10 @@ function sortByHavocDesc(teams) {
 function formatLastUpdated(date) {
   if (!date) return null;
   return date.toLocaleString(undefined, {
-    month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit',
+    month: 'short',
+    day: 'numeric',
+    hour: 'numeric',
+    minute: '2-digit',
   });
 }
 
@@ -85,7 +91,9 @@ const RankingsDashboard = () => {
         }
       });
 
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   const mergedConferenceData = useMemo(
@@ -103,7 +111,10 @@ const RankingsDashboard = () => {
     [mergedConferenceData]
   );
 
-  const lastUpdated = useMemo(() => formatLastUpdated(getLatestUpdatedAt(defenses || [])), [defenses]);
+  const lastUpdated = useMemo(
+    () => formatLastUpdated(getLatestUpdatedAt(defenses || [])),
+    [defenses]
+  );
 
   return (
     <div className="dashboard-container">
@@ -115,7 +126,9 @@ const RankingsDashboard = () => {
           </span>
         )}
         {!isLoading && !error && lastUpdated && (
-          <span className="rankings-status-pill">📡 Defensive stats last updated: {lastUpdated}</span>
+          <span className="rankings-status-pill">
+            📡 Defensive stats last updated: {lastUpdated}
+          </span>
         )}
       </div>
 
