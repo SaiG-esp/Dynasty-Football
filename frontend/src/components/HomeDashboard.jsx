@@ -5,7 +5,6 @@ import { CFP_MATCHUPS, BOWL_GAMES, FANTASY_ROOKIE_PPR_TOP25, DRAFT_2026_ROUND_1 
 const HomeDashboard = ({ setView }) => {
   return (
     <div className="home-dashboard">
-      
       {/* 1. HERO BANNER */}
       <div className="welcome-card">
         <div className="welcome-text">
@@ -19,15 +18,15 @@ const HomeDashboard = ({ setView }) => {
 
       {/* 2. MAIN GRID */}
       <div className="home-grid">
-        
-        {/* COL 1: GAMES (Auto Height) — left alone per product request */}
         <div className="home-column">
-          <div className="dashboard-card auto-height"> 
+          <div className="dashboard-card auto-height">
             <div className="section-title">🏆 CFP Bracket</div>
             <div className="scroll-area">
               {CFP_MATCHUPS.map((game) => (
                 <div key={game.id} className="match-item">
-                  <div className="match-teams">{game.home} vs {game.away}</div>
+                  <div className="match-teams">
+                    {game.home} vs {game.away}
+                  </div>
                   <div className="match-time">{game.date}</div>
                 </div>
               ))}
@@ -38,7 +37,9 @@ const HomeDashboard = ({ setView }) => {
             <div className="scroll-area">
               {BOWL_GAMES.map((game) => (
                 <div key={game.id} className="match-item">
-                  <div className="match-teams">{game.home} vs {game.away}</div>
+                  <div className="match-teams">
+                    {game.home} vs {game.away}
+                  </div>
                   <div className="match-time">{game.date}</div>
                 </div>
               ))}
@@ -57,7 +58,9 @@ const HomeDashboard = ({ setView }) => {
                     <span className="pick-num">{item.rank}</span>
                     <span className="team-name">{item.name}</span>
                   </div>
-                  <span className="team-needs">{item.pos} &middot; {item.team}</span>
+                  <span className="team-needs">
+                    {item.pos} &middot; {item.team}
+                  </span>
                 </div>
               ))}
             </div>
@@ -85,7 +88,6 @@ const HomeDashboard = ({ setView }) => {
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );

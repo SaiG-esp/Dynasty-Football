@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import './PlayersDashboard.css';
-import { PLAYER_DATABASE } from '../data'; // <--- Using the Big Database
+import { PLAYER_DATABASE } from '../data';
 
 const PLAYERS_PER_PAGE = 50;
 
@@ -13,16 +13,16 @@ const PlayersDashboard = ({ onPlayerClick }) => {
   const safePlayers = PLAYER_DATABASE || [];
 
   // Filter Logic
-  const filteredPlayers = safePlayers.filter(p => {
+  const filteredPlayers = safePlayers.filter((p) => {
     // 1. Tab Filter
-    const matchesTab = activeTab === 'ALL' 
-      ? true 
-      : p.pos && p.pos.includes(activeTab); 
+    const matchesTab = activeTab === 'ALL' ? true : p.pos && p.pos.includes(activeTab);
 
     // 2. Search Filter
     // Ensure name/school exist before lowercasing to avoid crash
     const nameMatch = p.name ? p.name.toLowerCase().includes(searchTerm.toLowerCase()) : false;
-    const schoolMatch = p.school ? p.school.toLowerCase().includes(searchTerm.toLowerCase()) : false;
+    const schoolMatch = p.school
+      ? p.school.toLowerCase().includes(searchTerm.toLowerCase())
+      : false;
 
     return matchesTab && (nameMatch || schoolMatch);
   });
@@ -47,14 +47,13 @@ const PlayersDashboard = ({ onPlayerClick }) => {
 
   return (
     <div className="players-dashboard">
-      
       {/* Header */}
       <div className="players-header-row">
         <h1 className="page-title">2026 Draft Class Database</h1>
         <div className="search-wrapper">
-          <input 
-            type="text" 
-            placeholder="Search Player or School..." 
+          <input
+            type="text"
+            placeholder="Search Player or School..."
             className="player-search"
             value={searchTerm}
             onChange={(e) => handleSearchChange(e.target.value)}
@@ -64,8 +63,8 @@ const PlayersDashboard = ({ onPlayerClick }) => {
 
       {/* Filter Tabs */}
       <div className="filter-row">
-        {['ALL', 'QB', 'RB', 'WR', 'TE'].map(type => (
-          <button 
+        {['ALL', 'QB', 'RB', 'WR', 'TE'].map((type) => (
+          <button
             key={type}
             className={`filter-pill ${activeTab === type ? 'active' : ''}`}
             onClick={() => handleTabChange(type)}
@@ -114,11 +113,11 @@ const PlayersDashboard = ({ onPlayerClick }) => {
                     <td className="td-team">
                       <span className="team-pill">{player.school}</span>
                     </td>
-                    
+
                     <td className="td-stat">{s1}</td>
                     <td className="td-stat">{s2}</td>
                     <td className="td-stat">{s3}</td>
-                    
+
                     <td className="td-trend">
                       <span className={`trend-tag ${player.trend || 'flat'}`}>
                         {player.trend === 'up' ? '▲' : player.trend === 'down' ? '▼' : '-'}
@@ -141,7 +140,8 @@ const PlayersDashboard = ({ onPlayerClick }) => {
       {filteredPlayers.length > 0 && (
         <div className="pagination-row">
           <span className="page-summary">
-            Showing {pageStart + 1}&ndash;{pageStart + pagePlayers.length} of {filteredPlayers.length}
+            Showing {pageStart + 1}&ndash;{pageStart + pagePlayers.length} of{' '}
+            {filteredPlayers.length}
           </span>
           <div className="page-controls">
             <button
@@ -151,7 +151,9 @@ const PlayersDashboard = ({ onPlayerClick }) => {
             >
               &larr; Prev
             </button>
-            <span className="page-info">Page {safePage} of {totalPages}</span>
+            <span className="page-info">
+              Page {safePage} of {totalPages}
+            </span>
             <button
               className="page-btn"
               onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}

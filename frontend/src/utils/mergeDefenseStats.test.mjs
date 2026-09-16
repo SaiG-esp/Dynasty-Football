@@ -10,9 +10,27 @@ import {
 
 // Simulates a JSON response from GET /defenses (data-engine/main.py).
 const apiRows = [
-  { team_name: 'South Carolina', havoc_score: 73.4, sacks_pg: 2.1, turnovers_pg: 1.3, updated_at: '2024-12-01T10:00:00' },
-  { team_name: 'Ohio State', havoc_score: 91.2, sacks_pg: 3.4, turnovers_pg: 1.8, updated_at: '2024-12-02T10:00:00' },
-  { team_name: 'Georgia', havoc_score: 88.0, sacks_pg: 2.9, turnovers_pg: 1.5, updated_at: '2024-11-30T10:00:00' },
+  {
+    team_name: 'South Carolina',
+    havoc_score: 73.4,
+    sacks_pg: 2.1,
+    turnovers_pg: 1.3,
+    updated_at: '2024-12-01T10:00:00',
+  },
+  {
+    team_name: 'Ohio State',
+    havoc_score: 91.2,
+    sacks_pg: 3.4,
+    turnovers_pg: 1.8,
+    updated_at: '2024-12-02T10:00:00',
+  },
+  {
+    team_name: 'Georgia',
+    havoc_score: 88.0,
+    sacks_pg: 2.9,
+    turnovers_pg: 1.5,
+    updated_at: '2024-11-30T10:00:00',
+  },
 ];
 
 // --- attachDefenseStats: matches via cfbdName when present ---

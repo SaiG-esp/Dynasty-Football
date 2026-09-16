@@ -33,7 +33,10 @@ async function apiGet(path) {
   }
 
   if (!response.ok) {
-    throw new ApiError(`API request to ${path} failed with status ${response.status}`, response.status);
+    throw new ApiError(
+      `API request to ${path} failed with status ${response.status}`,
+      response.status
+    );
   }
 
   return response.json();

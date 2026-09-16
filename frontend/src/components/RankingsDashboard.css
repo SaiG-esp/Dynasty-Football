@@ -47,10 +47,10 @@
   overflow-y: hidden; /* Hide vertical scroll on the card itself, let the table scroll */
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
 
   /* CRITICAL: Prevents grid blowout */
-  min-width: 0; 
+  min-width: 0;
   width: 100%;
 }
 
@@ -59,10 +59,10 @@
   padding: 20px 0 15px 0;
   border-bottom: 2px solid #333;
   margin-bottom: 15px;
-  font-size: 1.5rem; 
-  font-weight: 900; 
+  font-size: 1.5rem;
+  font-weight: 900;
   color: #fff;
-  display: flex; 
+  display: flex;
   justify-content: space-between;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -76,7 +76,7 @@
   width: 100%;
   overflow-x: auto; /* Enables horizontal scroll */
   overflow-y: auto; /* Enables vertical scroll for long lists */
-  -webkit-overflow-scrolling: touch; 
+  -webkit-overflow-scrolling: touch;
   padding-bottom: 5px;
   flex-grow: 1; /* Fills the rest of the card height */
   min-height: 0; /* Critical flexbox fix: lets the scroll area shrink below content height */
@@ -84,19 +84,19 @@
 
 /* 5. TEAM ROWS */
 .team-row {
-  display: flex; 
+  display: flex;
   align-items: stretch;
   background-color: #252529;
-  border-radius: 12px; 
+  border-radius: 12px;
   overflow: hidden;
-  height: 50px; 
+  height: 50px;
   margin-bottom: 10px;
-  border: 1px solid #2A2A2E; 
+  border: 1px solid #2a2a2e;
   flex-shrink: 0;
   transition: transform 0.2s;
-  
+
   /* Ensure row stays wide enough to read */
-  min-width: 500px; 
+  min-width: 500px;
 }
 
 .team-row:hover {
@@ -105,28 +105,28 @@
 }
 
 .rank-box {
-  width: 50px; 
-  display: flex; 
-  justify-content: center; 
+  width: 50px;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  font-size: 1.2rem; 
-  font-weight: 900; 
+  font-size: 1.2rem;
+  font-weight: 900;
   color: #fff;
-  text-shadow: 0 1px 3px rgba(0,0,0,0.3);
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   flex-shrink: 0;
 }
 
 .team-info {
-  flex-grow: 1; 
-  display: flex; 
-  justify-content: space-between; 
+  flex-grow: 1;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
   padding: 0 15px;
   min-width: 0;
 }
 
-.team-name-large { 
-  font-weight: 700; 
+.team-name-large {
+  font-weight: 700;
   color: #fff;
   font-size: 1rem;
   text-transform: uppercase;
@@ -135,19 +135,19 @@
 
 /* 6. STAT PILLS */
 .stat-pill {
-  background: #18181A; 
-  padding: 4px 10px; 
+  background: #18181a;
+  padding: 4px 10px;
   border-radius: 6px;
-  font-size: 0.8rem; 
-  color: #888; 
-  font-weight: bold; 
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: bold;
   border: 1px solid #333;
   min-width: 80px;
   text-align: center;
 }
 
-.havoc-score { 
-  color: #FFA55B; 
+.havoc-score {
+  color: #ffa55b;
 }
 
 /* 7. MOBILE RESPONSIVE */

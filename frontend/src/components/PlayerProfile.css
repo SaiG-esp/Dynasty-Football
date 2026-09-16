@@ -7,19 +7,25 @@
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* --- HERO SECTION (Sleeper Layout) --- */
 .profile-hero {
   background: #151515; /* Your dashboard card color */
-  
+
   /* BOX STYLING UPDATES */
   border: 1px solid #333; /* Full border */
   border-bottom: none; /* Open bottom to connect with tabs */
   border-radius: 12px 12px 0 0; /* Rounded top corners */
-  
+
   padding: 40px 60px;
   position: relative;
   margin-top: 20px; /* Slight spacing from top of page */
@@ -38,7 +44,10 @@
   font-size: 0.8rem;
   transition: all 0.2s;
 }
-.hero-back-btn:hover { border-color: #E03A3E; color: #fff; }
+.hero-back-btn:hover {
+  border-color: #e03a3e;
+  color: #fff;
+}
 
 .hero-content {
   display: flex;
@@ -65,7 +74,7 @@
   font-weight: 700;
   color: #666;
   border: 4px solid #1a1a1a;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 .school-logo-badge {
@@ -118,8 +127,14 @@
   letter-spacing: 0.5px;
 }
 
-.vital-divider { color: #333; font-size: 0.8rem; }
-.school-highlight { color: #fff; font-weight: 700; }
+.vital-divider {
+  color: #333;
+  font-size: 0.8rem;
+}
+.school-highlight {
+  color: #fff;
+  font-weight: 700;
+}
 
 .hero-badges-row {
   display: flex;
@@ -133,7 +148,7 @@
   font-weight: 800;
   padding: 4px 8px;
   border-radius: 4px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .rank-badge {
@@ -147,7 +162,7 @@
 /* --- TABS BAR --- */
 .profile-tabs {
   background: #1a1a1a;
-  
+
   /* BOX STYLING UPDATES */
   border-left: 1px solid #333;
   border-right: 1px solid #333;
@@ -172,11 +187,13 @@
   transition: all 0.2s;
 }
 
-.tab-item:hover { color: #ccc; }
+.tab-item:hover {
+  color: #ccc;
+}
 
 .tab-item.active {
   color: #fff;
-  border-bottom-color: #E03A3E; /* YOUR BRAND COLOR */
+  border-bottom-color: #e03a3e; /* YOUR BRAND COLOR */
 }
 
 /* --- BODY --- */
@@ -198,7 +215,11 @@
   border-bottom: 1px solid #333;
   background: #1a1a1a;
 }
-.card-header h3 { margin: 0; font-size: 1rem; color: #fff; }
+.card-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  color: #fff;
+}
 
 /* Table Styling */
 .profile-table {
@@ -223,7 +244,9 @@
   color: #ccc;
   text-align: center;
 }
-.profile-table td[align="left"] { text-align: left; }
+.profile-table td[align='left'] {
+  text-align: left;
+}
 
 /* Highlight Stats */
 .stat-pop {
@@ -232,9 +255,13 @@
   font-size: 1rem;
 }
 
-.school-text { color: #aaa; }
+.school-text {
+  color: #aaa;
+}
 
-.dim-row td { color: #444; }
+.dim-row td {
+  color: #444;
+}
 
 .footnote {
   padding: 15px;
@@ -256,7 +283,7 @@
 /* Add to src/components/PlayerProfile.css */
 
 .analyze-btn {
-  background-color: #E03A3E; /* Dynasty Red */
+  background-color: #e03a3e; /* Dynasty Red */
   color: white;
   border: none;
   padding: 8px 16px;
@@ -274,15 +301,21 @@
 .loading-zone {
   padding: 40px;
   text-align: center;
-  color: #00C853; /* Matrix Green for loading */
+  color: #00c853; /* Matrix Green for loading */
   font-family: monospace;
   animation: pulse 1.5s infinite;
 }
 
 @keyframes pulse {
-  0% { opacity: 0.5; }
-  50% { opacity: 1; }
-  100% { opacity: 0.5; }
+  0% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.5;
+  }
 }
 
 .empty-state-small {
@@ -303,20 +336,20 @@
 
 .ctx-tag.shootout {
   background-color: rgba(0, 200, 83, 0.2); /* Green Tint */
-  color: #00C853;
-  border: 1px solid #00C853;
+  color: #00c853;
+  border: 1px solid #00c853;
 }
 
 .ctx-tag.defensive {
   background-color: rgba(41, 98, 255, 0.2); /* Blue Tint */
-  color: #2962FF;
-  border: 1px solid #2962FF;
+  color: #2962ff;
+  border: 1px solid #2962ff;
 }
 
 .ctx-tag.blowout-win {
   background-color: rgba(255, 215, 0, 0.2); /* Gold */
-  color: #FFD700;
-  border: 1px solid #FFD700;
+  color: #ffd700;
+  border: 1px solid #ffd700;
 }
 
 .ctx-tag.blowout-loss {
