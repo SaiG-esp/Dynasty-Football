@@ -1,7 +1,10 @@
 requests
 pandas
-numpy
 python-dateutil
+python-dotenv
+psycopg2-binary
+fastapi
+uvicorn
 python-dotenv
 psycopg2-binary
 fastapi
