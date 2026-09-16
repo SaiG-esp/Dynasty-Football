@@ -142,7 +142,6 @@ Standalone research scripts (not required to run the UI). Each prints a report a
 | `matchup_data3.py` | Bulk-load FBS havoc into Postgres for `/defenses` |
 | `defense_intel.py` | Shared havoc-formula module |
 | `run_or_pass.py` | Weekly run/pass tendency by down and distance |
-| `get_pbp_api.py` | Raw play-by-play fetch helper |
 
 ## GitHub About box (maintainers)
 
